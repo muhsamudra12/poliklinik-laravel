@@ -2,6 +2,12 @@
 
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AdminPoliController;
+use App\Http\Controllers\Admin\DokterController;
+use App\Http\Controllers\Admin\PasienController;
+use App\Http\Controllers\Admin\ObatController;
+
+use App\Http\Controllers\Dokter\JadwalPeriksaController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -19,10 +25,10 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');
 
-    Route::get('/polis', function () { return 'Halaman Poli (belum dibuat)'; })->name('polis.index');
-    Route::get('/dokter', function () { return 'Halaman Dokter (belum dibuat)'; })->name('dokter.index');
-    Route::get('/pasien', function () { return 'Halaman Pasien (belum dibuat)'; })->name('pasien.index');
-    Route::get('/obat', function () { return 'Halaman Obat (belum dibuat)'; })->name('obat.index');
+    Route::resource('polis', AdminPoliController::class);
+    Route::resource('dokter', DokterController::class);
+    Route::resource('pasien', PasienController::class);
+    Route::resource('obat', ObatController::class);
 });
 
 // ================= DOKTER =================
@@ -31,7 +37,8 @@ Route::middleware(['auth', 'role:dokter'])->prefix('dokter')->group(function () 
         return view('dokter.dashboard');
     })->name('dokter.dashboard');
 
-    Route::get('/jadwal-periksa', function () { return 'Halaman Jadwal Periksa (belum dibuat)'; })->name('jadwal-periksa.index');
+    Route::resource('jadwal-periksa', JadwalPeriksaController::class);
+
     Route::get('/periksa-pasien', function () { return 'Halaman Periksa Pasien (belum dibuat)'; })->name('periksa-pasien.index');
     Route::get('/riwayat-pasien', function () { return 'Halaman Riwayat Pasien (belum dibuat)'; })->name('riwayat-pasien.index');
 });
