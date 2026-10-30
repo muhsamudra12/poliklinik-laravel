@@ -60,8 +60,7 @@
                             </td>
 
                             <td class="px-6 py-4">
-                                <span class="inline-block px-3 py-1 rounded-lg text-xs font-semibold whitespace-nowrap
-                                    {{ $dokter->poli ? 'bg-blue-100 text-blue-700' : 'bg-slate-100 text-slate-400' }}">
+                                <span class="px-3 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-700">
                                     {{ $dokter->poli->nama_poli ?? 'Belum Dipilih' }}
                                 </span>
                             </td>
